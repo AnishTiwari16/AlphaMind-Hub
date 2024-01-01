@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const bcrypt_1 = __importDefault(require("bcrypt"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const userSchema = new mongoose_1.default.Schema({
     name: {
@@ -100,5 +101,12 @@ const userSchema = new mongoose_1.default.Schema({
         },
     ],
 }, { timestamps: true });
+userSchema.pre('save', async function (next) {
+    const user = this;
+    if (user.isModified('password')) {
+        user.password = await bcrypt_1.default.hash(user.password, 8);
+    }
+    next();
+});
 const User = mongoose_1.default.model('User', userSchema);
 module.exports = User;

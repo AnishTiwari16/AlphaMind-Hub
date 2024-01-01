@@ -1,4 +1,4 @@
-export interface IUser extends Document {
+export type TUser = {
     name: string;
     password: string;
     email: string;
@@ -21,4 +21,28 @@ export interface IUser extends Document {
     steps: [{ date: Date; stepsCount: number }];
     updatedAt: Date;
     createdAt: Date;
-}
+};
+export type TAdmin = {
+    name: string;
+    password: string;
+    email: string;
+    updatedAt: Date;
+    createdAt: Date;
+};
+export type TWorkout = {
+    name: string;
+    description: string;
+    durationInMinutes: number;
+    exercises: [
+        {
+            name: string;
+            description: string;
+            sets: number;
+            reps: number;
+            imageURL: string;
+        }
+    ];
+    imageURL: string;
+    createdAt: Date;
+    updatedAt: Date;
+};

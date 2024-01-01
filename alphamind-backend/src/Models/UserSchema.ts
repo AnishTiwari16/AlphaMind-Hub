@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
-import { IUser } from '../types';
 import bcrypt from 'bcrypt';
+import mongoose from 'mongoose';
+import { TUser } from '../types';
 const userSchema = new mongoose.Schema(
     {
         name: {
@@ -107,5 +107,5 @@ userSchema.pre('save', async function (next) {
     }
     next();
 });
-const User = mongoose.model<IUser>('User', userSchema);
+const User = mongoose.model<TUser>('User', userSchema);
 module.exports = User;
