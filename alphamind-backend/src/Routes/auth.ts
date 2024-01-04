@@ -2,6 +2,7 @@ import nodemailer from 'nodemailer';
 import express from 'express';
 import errorHandler from '../Middlewares/errorMiddleware';
 import { createUser } from '../Controllers/register';
+import { loginUser } from '../Controllers/login';
 const app = express();
 const router = express.Router();
 const transporter = nodemailer.createTransport({
@@ -13,6 +14,7 @@ const transporter = nodemailer.createTransport({
 });
 //creating a user
 app.post('/register', createUser);
+app.post('/login', loginUser);
 //if there is error in code then errorHandler middleware will be called
 app.use(errorHandler);
 module.exports = router;

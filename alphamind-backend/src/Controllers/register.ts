@@ -18,7 +18,7 @@ export const createUser = async (
             goal,
             activityLevels,
         } = req.body;
-        const existingUser = await User.findOne({ email: email });
+        const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res
                 .status(409)
